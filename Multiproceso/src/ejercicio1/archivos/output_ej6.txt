@@ -1,0 +1,6 @@
+Este es el ejercicio 6.
+ El volumen de la unidad C no tiene etiqueta.
+ El n£mero de serie del volumen es: A832-5767
+
+ Directorio de C:\Users\in2dm3-v\Documents\LEIRE_DAM2\PSP\Multiproceso
+
