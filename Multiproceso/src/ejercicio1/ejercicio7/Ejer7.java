@@ -15,18 +15,25 @@ public class Ejer7 {
 		sc.close();
 
 		// Preparar el comando para ejecutar EjemploLectura
-		ProcessBuilder pb = new ProcessBuilder("java", "ejercicio1.ejercicio7.EjemploLectura", texto);
+		ProcessBuilder pb = new ProcessBuilder("java", "-cp", "src", "ejercicio1.ejercicio7.EjemploLectura", texto);
 		
 		try {
 			Process p = pb.start();
 
 			// Capturar la salida
-			InputStream is = p.getInputStream();
-			int c;
-			while ((c = is.read()) != -1) {
-				System.out.print((char) c);
-			}
-			is.close();
+            InputStream is = p.getInputStream();
+            int c;
+            StringBuilder salida = new StringBuilder();
+            while ((c = is.read()) != -1) {
+                salida.append((char) c);
+            }
+            is.close();
+
+            // Esperar a que el proceso termine
+            p.waitFor();
+
+            // Imprimir la salida de EjemploLectura
+            System.out.println(salida.toString());
 
 		} catch (Exception e) {
 			System.out.println("Error: " + e);
