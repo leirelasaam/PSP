@@ -1,5 +1,8 @@
 package ejercicio1.ejercicio7;
 
+/**
+ * Imprime el argumento que se le ha pasado.
+ */
 public class EjemploLectura {
 
 	public static void main(String[] args) {
