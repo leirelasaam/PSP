@@ -14,6 +14,10 @@ import javax.swing.SwingConstants;
 
 import ejercicio2.controlador.GestorDeEjecuciones;
 
+/**
+ * Panel en el que se encuentran los elementos principales de la aplicación. Los
+ * botones de start inician diferentes procesos.
+ */
 public class PanelMenu extends JPanel {
 	private static final long serialVersionUID = -5789456387671014922L;
 
@@ -32,20 +36,25 @@ public class PanelMenu extends JPanel {
 	private void initialize(ActionListener actionListenerSalir) {
 		setLayout(null);
 
+		JLabel lblProceso1 = new JLabel("Ejecutar programa del sistema");
+		lblProceso1.setHorizontalAlignment(SwingConstants.LEFT);
+		lblProceso1.setBounds(100, 40, 155, 25);
+		add(lblProceso1);
+		
 		// Ajustar los campos de texto
 		textFieldProceso1 = new JTextField();
 		textFieldProceso1.setColumns(10);
-		textFieldProceso1.setBounds(100, 40, 155, 25); // Mover a la derecha
+		textFieldProceso1.setBounds(100, 40, 155, 25);
 		add(textFieldProceso1);
 
 		textFieldProceso2 = new JTextField();
 		textFieldProceso2.setColumns(10);
-		textFieldProceso2.setBounds(358, 40, 155, 25); // Mover a la derecha
+		textFieldProceso2.setBounds(358, 40, 155, 25);
 		add(textFieldProceso2);
 
 		textFieldProceso3 = new JTextField();
 		textFieldProceso3.setColumns(10);
-		textFieldProceso3.setBounds(616, 40, 155, 25); // Mover a la derecha
+		textFieldProceso3.setBounds(616, 40, 155, 25);
 		add(textFieldProceso3);
 
 		// Ajustar los botones
@@ -55,7 +64,7 @@ public class PanelMenu extends JPanel {
 				ejecutarPrograma();
 			}
 		});
-		btnStart1.setBounds(100, 80, 155, 40); // Mover a la derecha
+		btnStart1.setBounds(100, 80, 155, 40);
 		add(btnStart1);
 
 		JButton btnStart2 = new JButton("Start");
@@ -64,7 +73,7 @@ public class PanelMenu extends JPanel {
 				ejecutarComando();
 			}
 		});
-		btnStart2.setBounds(358, 80, 155, 40); // Mover a la derecha
+		btnStart2.setBounds(358, 80, 155, 40);
 		add(btnStart2);
 
 		JButton btnStart3 = new JButton("Start");
@@ -73,12 +82,12 @@ public class PanelMenu extends JPanel {
 				ejecutarEjer7();
 			}
 		});
-		btnStart3.setBounds(616, 80, 155, 40); // Mover a la derecha
+		btnStart3.setBounds(616, 80, 155, 40);
 		add(btnStart3);
 
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(actionListenerSalir);
-		btnSalir.setBounds(100, 480, 155, 40); // Mover a la derecha
+		btnSalir.setBounds(100, 480, 155, 40);
 		add(btnSalir);
 
 		// Etiquetas para PID
@@ -89,17 +98,17 @@ public class PanelMenu extends JPanel {
 
 		lblPID1 = new JLabel("");
 		lblPID1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPID1.setBounds(100, 140, 155, 20); // Mover a la derecha
+		lblPID1.setBounds(100, 140, 155, 20);
 		add(lblPID1);
 
 		lblPID2 = new JLabel("");
 		lblPID2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPID2.setBounds(358, 140, 155, 20); // Mover a la derecha
+		lblPID2.setBounds(358, 140, 155, 20);
 		add(lblPID2);
 
 		lblPID3 = new JLabel("");
 		lblPID3.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPID3.setBounds(616, 140, 250, 20); // Mover a la derecha
+		lblPID3.setBounds(616, 140, 250, 20);
 		add(lblPID3);
 
 		// Etiquetas para PID Padre
@@ -110,17 +119,17 @@ public class PanelMenu extends JPanel {
 
 		lblPIDPadre1 = new JLabel("");
 		lblPIDPadre1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPIDPadre1.setBounds(100, 180, 100, 20); // Mover a la derecha
+		lblPIDPadre1.setBounds(100, 180, 100, 20);
 		add(lblPIDPadre1);
 
 		lblPIDPadre2 = new JLabel("");
 		lblPIDPadre2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPIDPadre2.setBounds(358, 180, 155, 20); // Mover a la derecha
+		lblPIDPadre2.setBounds(358, 180, 155, 20);
 		add(lblPIDPadre2);
 
 		lblPIDPadre3 = new JLabel("");
 		lblPIDPadre3.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPIDPadre3.setBounds(616, 180, 250, 20); // Mover a la derecha
+		lblPIDPadre3.setBounds(616, 180, 250, 20);
 		add(lblPIDPadre3);
 
 		// Etiquetas para Resultado
@@ -133,17 +142,32 @@ public class PanelMenu extends JPanel {
 		textArea1.setLineWrap(true);
 		textArea1.setWrapStyleWord(true);
 		JScrollPane scrollPane1 = new JScrollPane(textArea1);
-		scrollPane1.setBounds(358, 220, 250, 300); // Mover a la derecha
+		scrollPane1.setBounds(358, 220, 250, 300);
 		add(scrollPane1);
 
 		textArea2 = new JTextArea();
 		textArea2.setLineWrap(true);
 		textArea2.setWrapStyleWord(true);
 		JScrollPane scrollPane2 = new JScrollPane(textArea2);
-		scrollPane2.setBounds(650, 220, 250, 300); // Mover a la derecha
+		scrollPane2.setBounds(650, 220, 250, 300);
 		add(scrollPane2);
 	}
 
+	/**
+	 * Recoge el nombre del programa del sistema a ejecutar y muestra el pid del
+	 * proceso y de su proceso padre.
+	 */
+	private void ejecutarPrograma() {
+		GestorDeEjecuciones gde = new GestorDeEjecuciones();
+		ArrayList<String> salida = gde.ejecutarComando(textFieldProceso1.getText());
+		lblPID1.setText(salida.get(0));
+		lblPIDPadre1.setText(salida.get(1));
+	}
+
+	/**
+	 * Recoge el valor del comando a ejecutar y muestra la salida en el textArea1.
+	 * También muestra el pid del proceso y de su proceso padre.
+	 */
 	private void ejecutarComando() {
 		GestorDeEjecuciones gde = new GestorDeEjecuciones();
 		ArrayList<String> salida = gde.ejecutarComando(textFieldProceso2.getText());
@@ -152,23 +176,21 @@ public class PanelMenu extends JPanel {
 		textArea1.setText(salida.get(2));
 	}
 
-	private void ejecutarPrograma() {
-		GestorDeEjecuciones gde = new GestorDeEjecuciones();
-		ArrayList<String> salida = gde.ejecutarComando(textFieldProceso1.getText());
-		lblPID1.setText(salida.get(0));
-		lblPIDPadre1.setText(salida.get(1));
-	}
-
+	/**
+	 * Ejecuta 5 veces el Ejer7 muestra la salida en el textArea2. También muestra
+	 * el pid de cada proceso y de su proceso padre.
+	 */
 	private void ejecutarEjer7() {
 		lblPID3.setText("");
 		lblPIDPadre3.setText("");
 		textArea2.setText("");
 
 		GestorDeEjecuciones gde = new GestorDeEjecuciones();
+		String texto = textFieldProceso3.getText();
 		for (int i = 0; i < 5; i++) {
-			ArrayList<String> salida = gde.ejecutarEjer7(textFieldProceso3.getText());
+			ArrayList<String> salida = gde.ejecutarEjer7(texto);
 			lblPID3.setText(lblPID3.getText() + " " + salida.get(0));
-			lblPIDPadre3.setText(lblPIDPadre3.getText() + " " + salida.get(1));
+			lblPIDPadre3.setText(salida.get(1));
 			textArea2.setText(textArea2.getText() + salida.get(2));
 		}
 	}

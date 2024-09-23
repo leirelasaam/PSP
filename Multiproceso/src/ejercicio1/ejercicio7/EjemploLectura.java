@@ -2,6 +2,7 @@ package ejercicio1.ejercicio7;
 
 /**
  * Imprime el argumento que se le ha pasado.
+ * El archivo .class se ha compilado con la versión JDK 21.
  */
 public class EjemploLectura {
 

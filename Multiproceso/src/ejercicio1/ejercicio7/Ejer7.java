@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 /**
  * Pide un texto que se pasa como argumento a la clase EjemploLectura.
+ * El archivo .class se ha compilado con la versión JDK 21.
  */
 public class Ejer7 {
 	public static void main(String[] args) {
@@ -15,7 +16,12 @@ public class Ejer7 {
 		sc.close();
 
 		// Preparar el comando para ejecutar EjemploLectura
+		// IMPORTANTE:
+		// EJERCICIO 2: Con esta opción se ejecuta correctamente desde la aplicación con windowbuilder cuando se compila la clase
 		ProcessBuilder pb = new ProcessBuilder("java", "-cp", "src", "ejercicio1.ejercicio7.EjemploLectura", texto);
+		
+		// EJERCICIO 1.7: Con esta opción se ejecuta correctamente desde la línea de comandos cuando se compila la clase
+		//ProcessBuilder pb = new ProcessBuilder("java", "ejercicio1.ejercicio7.EjemploLectura", texto);
 		
 		try {
 			Process p = pb.start();

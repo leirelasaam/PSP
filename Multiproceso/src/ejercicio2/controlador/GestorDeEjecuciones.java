@@ -1,8 +1,6 @@
 package ejercicio2.controlador;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
@@ -14,13 +12,14 @@ public class GestorDeEjecuciones {
 		String salida = null;
 		try {
 			Process p = pb.start();
+			ProcessHandle parentHandle = p.toHandle().parent().get();
 			System.out.println("> Ejecutando " + comando);
 
 			// Obtener el PID del proceso
 			String pid = p.pid() + "";
 			infoProceso.add(pid);
 
-			String pidPadre = obtenerPIDPadre(pid);
+			String pidPadre = parentHandle.pid() + "";
 			infoProceso.add(pidPadre);
 
 			InputStream is = p.getInputStream();
@@ -47,13 +46,14 @@ public class GestorDeEjecuciones {
 
 		try {
 			Process p = pb.start();
+			ProcessHandle parentHandle = p.toHandle().parent().get();
 			System.out.println("> Ejeutando programa " + programa);
 
 			// Obtener el PID del proceso
 			String pid = p.pid() + "";
 			infoProceso.add(pid);
 
-			String pidPadre = obtenerPIDPadre(pid);
+			String pidPadre = parentHandle.pid() + "";
 			infoProceso.add(pidPadre);
 
 			InputStream is = p.getInputStream();
@@ -83,6 +83,8 @@ public class GestorDeEjecuciones {
 
 		try {
 			Process p = pb.start();
+			// Obtener el proceso del padre
+			ProcessHandle parentHandle = p.toHandle().parent().get();
 			System.out.println("> Ejeutando Ejer7 con el argumento " + texto);
 
 			OutputStream os = p.getOutputStream();
@@ -95,7 +97,7 @@ public class GestorDeEjecuciones {
 			String pid = p.pid() + "";
 			infoProceso.add(pid);
 
-			String pidPadre = obtenerPIDPadre(pid);
+			String pidPadre = parentHandle.pid() + "";
 			infoProceso.add(pidPadre);
 
 			InputStream is = p.getInputStream();
@@ -113,31 +115,6 @@ public class GestorDeEjecuciones {
 		}
 
 		return infoProceso;
-	}
-
-	@SuppressWarnings("deprecation")
-	private String obtenerPIDPadre(String pid) {
-		String pidPadre = null;
-
-		try {
-			// Comando para obtener el PID del proceso padre
-			Process p = Runtime.getRuntime().exec("wmic process where processid=" + pid + " get parentprocessid");
-			BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			String line;
-
-			p.waitFor();
-			while ((line = br.readLine()) != null) {
-				if (!line.trim().isEmpty() && !line.contains("ParentProcessId")) {
-					pidPadre = line.trim();
-				}
-			}
-
-			br.close();
-		} catch (Exception e) {
-			System.out.println("Error: " + e);
-		}
-
-		return pidPadre;
 	}
 
 }
