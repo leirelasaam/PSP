@@ -36,9 +36,9 @@ public class PanelMenu extends JPanel {
 	private void initialize(ActionListener actionListenerSalir) {
 		setLayout(null);
 
-		JLabel lblProceso1 = new JLabel("Ejecutar programa del sistema");
+		JLabel lblProceso1 = new JLabel("Ejecutar programa del sistema:");
 		lblProceso1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblProceso1.setBounds(100, 40, 155, 25);
+		lblProceso1.setBounds(100, 10, 200, 25);
 		add(lblProceso1);
 		
 		// Ajustar los campos de texto
@@ -46,11 +46,21 @@ public class PanelMenu extends JPanel {
 		textFieldProceso1.setColumns(10);
 		textFieldProceso1.setBounds(100, 40, 155, 25);
 		add(textFieldProceso1);
+		
+		JLabel lblProceso2 = new JLabel("Ejecutar comando:");
+		lblProceso2.setHorizontalAlignment(SwingConstants.LEFT);
+		lblProceso2.setBounds(358, 10, 200, 25);
+		add(lblProceso2);
 
 		textFieldProceso2 = new JTextField();
 		textFieldProceso2.setColumns(10);
 		textFieldProceso2.setBounds(358, 40, 155, 25);
 		add(textFieldProceso2);
+		
+		JLabel lblProceso3 = new JLabel("Ejecutar Ejer7:");
+		lblProceso3.setHorizontalAlignment(SwingConstants.LEFT);
+		lblProceso3.setBounds(616, 10, 200, 25);
+		add(lblProceso3);
 
 		textFieldProceso3 = new JTextField();
 		textFieldProceso3.setColumns(10);

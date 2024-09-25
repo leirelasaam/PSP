@@ -16,7 +16,7 @@ public class Ejer7 {
 		sc.close();
 
 		// Preparar el comando para ejecutar EjemploLectura
-		// IMPORTANTE:
+		// IMPORTANTE!!!!:
 		// EJERCICIO 2: Con esta opción se ejecuta correctamente desde la aplicación con windowbuilder cuando se compila la clase
 		ProcessBuilder pb = new ProcessBuilder("java", "-cp", "src", "ejercicio1.ejercicio7.EjemploLectura", texto);
 		
