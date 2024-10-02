@@ -14,5 +14,4 @@ public class EjemploLectura {
 			System.out.println("> No se ha recibido ningun texto.");
 		}
 	}
-
 }

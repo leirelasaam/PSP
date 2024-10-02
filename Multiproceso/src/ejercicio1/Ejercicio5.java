@@ -17,12 +17,9 @@ public class Ejercicio5 {
 			String salida = "";
 			int c;
 			while ((c = is.read()) != -1) {
-				System.out.print((char) c);
 				salida += (char) c;
 			}
 			is.close();
-
-			System.out.println();
 
 			if (salida.contains("Notepad.exe")) {
 				// Ejecutar el comando kill para matar el proceso

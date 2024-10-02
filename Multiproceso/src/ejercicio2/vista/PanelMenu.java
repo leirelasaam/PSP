@@ -25,6 +25,7 @@ public class PanelMenu extends JPanel {
 	private JLabel lblPID1, lblPID2, lblPID3;
 	private JLabel lblPIDPadre1, lblPIDPadre2, lblPIDPadre3;
 	private JTextArea textArea1, textArea2;
+	private GestorDeEjecuciones gde;
 
 	public PanelMenu(ActionListener actionListenerSalir) {
 		initialize(actionListenerSalir);
@@ -168,8 +169,9 @@ public class PanelMenu extends JPanel {
 	 * proceso y de su proceso padre.
 	 */
 	private void ejecutarPrograma() {
-		GestorDeEjecuciones gde = new GestorDeEjecuciones();
-		ArrayList<String> salida = gde.ejecutarComando(textFieldProceso1.getText());
+		if (gde == null)
+			gde = new GestorDeEjecuciones();
+		ArrayList<String> salida = gde.ejecutarPrograma(textFieldProceso1.getText());
 		lblPID1.setText(salida.get(0));
 		lblPIDPadre1.setText(salida.get(1));
 	}
@@ -179,7 +181,8 @@ public class PanelMenu extends JPanel {
 	 * También muestra el pid del proceso y de su proceso padre.
 	 */
 	private void ejecutarComando() {
-		GestorDeEjecuciones gde = new GestorDeEjecuciones();
+		if (gde == null)
+			gde = new GestorDeEjecuciones();
 		ArrayList<String> salida = gde.ejecutarComando(textFieldProceso2.getText());
 		lblPID2.setText(salida.get(0));
 		lblPIDPadre2.setText(salida.get(1));
@@ -195,7 +198,8 @@ public class PanelMenu extends JPanel {
 		lblPIDPadre3.setText("");
 		textArea2.setText("");
 
-		GestorDeEjecuciones gde = new GestorDeEjecuciones();
+		if (gde == null)
+			gde = new GestorDeEjecuciones();
 		String texto = textFieldProceso3.getText();
 		for (int i = 0; i < 5; i++) {
 			ArrayList<String> salida = gde.ejecutarEjer7(texto);
