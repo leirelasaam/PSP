@@ -19,8 +19,9 @@ public class HiloCaballo extends Thread {
 			try {
 				barra.setValue(barra.getValue() + random);
 				if (barra.getValue() >= 100) {
-					if (label.getText().isEmpty())
+					if (label.getText().isEmpty()) {
 						label.setText("Ganador: " + getName());
+					}
 				}
 				
 				sleep(1000);
