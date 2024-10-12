@@ -7,6 +7,9 @@ public class HiloCaballo extends Thread {
 	private JLabel label;
 	private JProgressBar barra;
 
+	// Variable común para los hilos, para comprobar si ya existe un ganador.
+	private static volatile boolean hayGanador = false;
+
 	public HiloCaballo(String nombre, JProgressBar barra, JLabel label) {
 		super(nombre);
 		this.label = label;
@@ -14,21 +17,25 @@ public class HiloCaballo extends Thread {
 	}
 
 	public void run() {
-		while(barra.getValue() <= 100) {
-			int random = (int)(Math.random() * 21); // 0 a 20
+		while (barra.getValue() <= 100 && !hayGanador) {
+			int random = (int) (Math.random() * 21);
 			try {
 				barra.setValue(barra.getValue() + random);
-				if (barra.getValue() >= 100) {
-					if (label.getText().isEmpty()) {
-						label.setText("Ganador: " + getName());
-					}
+				if (barra.getValue() >= 100 && !hayGanador) {
+					label.setText("Ganador: " + getName());
+					hayGanador = true;
+					terminar();
 				}
-				
+
 				sleep(1000);
 			} catch (InterruptedException ignore) {
 				break;
 			}
 		}
+	}
+
+	public void terminar() {
+		this.interrupt();
 	}
 
 }
