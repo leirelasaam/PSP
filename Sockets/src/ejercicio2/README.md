@@ -25,12 +25,12 @@ Consola con clientes:
 ➜  leire@LeireVictus:/PSP/Sockets/src$ java ejercicio2.Cliente
 > Conexión realizada con el servidor.
 > Respuesta del servidor: Saludos desde el servidor al Cliente Nº 1
-➜  src git:(main) ✗ java ejercicio2.Cliente
+➜  leire@LeireVictus:/PSP/Sockets/src$ java ejercicio2.Cliente
 > Conexión realizada con el servidor.
 > Respuesta del servidor: Saludos desde el servidor al Cliente Nº 2
-➜  src git:(main) ✗ java ejercicio2.Cliente
+➜  leire@LeireVictus:/PSP/Sockets/src$ java ejercicio2.Cliente
 > Conexión realizada con el servidor.
 > Respuesta del servidor: Saludos desde el servidor al Cliente Nº 3
-➜  src git:(main) ✗ java ejercicio2.Cliente
+➜  leire@LeireVictus:/PSP/Sockets/src$ java ejercicio2.Cliente
 > Error en el cliente: Connection refused
 ```
