@@ -25,6 +25,7 @@ public class Cliente {
 			Socket socket = new Socket(host, puerto);
 			System.out.println("> Conexión realizada con el servidor.");
 
+			// INPUT - ENTRADA
 			// Crear flujo de entrada para recibir datos
 			ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 
@@ -37,6 +38,7 @@ public class Cliente {
 			p.setGenero('M');
 			p.setFechaNacimiento(1990, 10, 2);
 
+			// OUTPUT - SALIDA
 			// Crear flujo de salida para enviar datos
 			ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
 
@@ -56,7 +58,7 @@ public class Cliente {
 	}
 
 	public static void main(String[] args) {
-		Cliente cliente = new Cliente("localhost", 5300);
+		Cliente cliente = new Cliente("localhost", 4321);
 		cliente.conectarServidor();
 	}
 }

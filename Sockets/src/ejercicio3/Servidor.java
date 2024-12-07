@@ -26,6 +26,7 @@ public class Servidor {
 			// Aceptar la conexión del cliente
 			Socket socket = serverSocket.accept();
 
+			// OUTPUT - SALIDA
 			// Crear flujo de salida para enviar datos
 			ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
 
@@ -43,6 +44,7 @@ public class Servidor {
 			output.writeObject(p);
 			output.flush();
 
+			// INPUT - ENTRADA
 			// Crear flujo de entrada para recibir datos
 			ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 
@@ -63,7 +65,7 @@ public class Servidor {
 	}
 
 	public static void main(String[] args) {
-		Servidor servidor = new Servidor(5300);
+		Servidor servidor = new Servidor(4321);
 		servidor.iniciar();
 	}
 }
