@@ -1,18 +1,19 @@
 package ejercicio3;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
 public class Persona implements Serializable {
-	
+
 	private static final long serialVersionUID = 4852081154722451695L;
 	private String nif;
 	private String nombre;
 	private String apellido;
 	private Date fechaNacimiento;
 	private char genero;
-	
+
 	public Persona() {
 		// Constructor vacío
 	}
@@ -59,6 +60,11 @@ public class Persona implements Serializable {
 		this.genero = genero;
 	}
 
+	public String getFechaNacimientoFormateada() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		return sdf.format(fechaNacimiento);
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(apellido, fechaNacimiento, genero, nif, nombre);
@@ -79,8 +85,8 @@ public class Persona implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Persona [nif=" + nif + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento="
-				+ fechaNacimiento + ", genero=" + genero + "]";
+		return "\n\tNIF: " + nif + "\n\tNombre: " + nombre + "\n\tApellido: " + apellido + "\n\tFecha de nacimiento: "
+				+ getFechaNacimientoFormateada() + "\n\tGénero: " + genero;
 	}
 
 }

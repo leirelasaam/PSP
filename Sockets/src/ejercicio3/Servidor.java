@@ -17,7 +17,7 @@ public class Servidor {
 		this.puerto = puerto;
 	}
 
-	private void iniciar() {
+	private void iniciar(Persona p) {
 		try {
 			// Crear un servidor
 			ServerSocket serverSocket = new ServerSocket(puerto);
@@ -29,15 +29,6 @@ public class Servidor {
 			// OUTPUT - SALIDA
 			// Crear flujo de salida para enviar datos
 			ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
-
-			// Crear una persona
-			Persona p = new Persona();
-			p.setNif("16099121H");
-			p.setNombre("Leire");
-			p.setApellido("Lasa");
-			p.setFechaNacimiento(1996, 2, 9);
-			p.setGenero('F');
-
 			System.out.println("> Persona enviada al cliente: " + p.toString());
 
 			// Mandar el objeto creado al cliente
@@ -66,6 +57,15 @@ public class Servidor {
 
 	public static void main(String[] args) {
 		Servidor servidor = new Servidor(4321);
-		servidor.iniciar();
+		
+		// Crear una persona que se envía al cliente
+		Persona p = new Persona();
+		p.setNif("16099121H");
+		p.setNombre("Leire");
+		p.setApellido("Lasa");
+		p.setFechaNacimiento(1996, 2, 9);
+		p.setGenero('F');
+		
+		servidor.iniciar(p);
 	}
 }
