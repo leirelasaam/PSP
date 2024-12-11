@@ -1,0 +1,13 @@
+Realizar un programa servidor y un programa cliente que permita que ambos puedan mantener una conversación mediante la consola (sin interfaz de usuario).
+
+Cuando alguno de los dos participantes introduce la palabra “salir”, ambas aplicaciones terminan.
+
+Ejemplo de ejecución: [En verde lo que escribe cada uno por consola]
+
+
+
+El programa tiene que tener 4 clases: Cliente, EnviarThread, RecibirThread y Servidor.
+
+Las clases Cliente y Servidor se encargan de establecer la conexión y a continuación crean dos thread, uno para leer y otro para escribir. De esta forma, tanto cliente como servidor pueden leer o escribir en cualquier orden y el número de veces que deseen.
+
+Las clases EnviarThread y RecibirThread de cliente y servidor son iguales. Reciben el socket de la comunicación en su constructor, crean los streams de entrada o salida (según sea el caso) y su método run es un bucle infinito que lee de consola y escribe por el socket o lee del socket y escribe por consola (según sea el caso), hasta que alguno de los dos participantes envía la palabra “salir” en cuyo caso finalizan ambos programas.
