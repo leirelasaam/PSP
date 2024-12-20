@@ -8,8 +8,10 @@ public class RecibirThread extends Thread {
 
 	private Socket socket;
 	private DataInputStream input = null;
+	private boolean salir = false;
 
-	public RecibirThread(Socket socket) {
+	public RecibirThread(String nombre, Socket socket) {
+		super(nombre);
 		this.socket = socket;
 	}
 
@@ -18,27 +20,27 @@ public class RecibirThread extends Thread {
 		try {
 			// Crear flujo de entrada para recibir datos
 			input = new DataInputStream(socket.getInputStream());
-			while (true) {
-				// Recibir mensaje
+			while (!salir && !socket.isClosed()) {
 				String mensaje = input.readUTF();
 
-				if (mensaje != null) {
-					System.out.println(mensaje);
-
-					if (mensaje.equalsIgnoreCase("salir")) {
-						break;
-					}
-				}
+				if (mensaje.equalsIgnoreCase("salir")) {
+                    salir = true;
+                    System.out.println("> Se recibió 'salir'.");
+                } else {
+                    System.out.println("- " + mensaje);
+                }
 			}
 		} catch (IOException e) {
-			System.out.println("-> Error en el input stream: ");
-			e.printStackTrace();
+			//
 		} finally {
 			try {
 				if (input!= null)
 					input.close();
+				if (socket != null) {
+	                socket.close();
+	            }
 			} catch (IOException e) {
-				//
+				
 			}
 		}
 	}

@@ -19,20 +19,17 @@ public class Cliente {
 			// Conectar al servidor
 			socket = new Socket(host, puerto);
 			System.out.println("> Conexión realizada con el servidor.");
-			
-			EnviarThread et = new EnviarThread(socket);
-			RecibirThread rt = new RecibirThread(socket);
-			
+
+			EnviarThread et = new EnviarThread("EnviarCliente", socket);
+			RecibirThread rt = new RecibirThread("RecibirCliente", socket);
+
 			et.start();
 			rt.start();
 			
-			et.join();
-			rt.join();
+			// El socket se cierra directamente en los hilos, no hace falta un join
+
 		} catch (IOException e) {
 			System.out.println("> Error IO en el cliente: " + e.getMessage());
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

@@ -7,11 +7,13 @@ import java.util.Scanner;
 
 public class EnviarThread extends Thread {
 
-	private Socket socket;
+	private Socket socket = null;
 	private DataOutputStream output = null;
 	private Scanner sc = null;
+	private boolean salir = false;
 
-	public EnviarThread(Socket socket) {
+	public EnviarThread(String nombre, Socket socket) {
+		super(nombre);
 		this.socket = socket;
 	}
 
@@ -20,33 +22,31 @@ public class EnviarThread extends Thread {
 		try {
 			// Crear flujo de salida para enviar datos
 			output = new DataOutputStream(socket.getOutputStream());
-			// Leer de consola
 			sc = new Scanner(System.in);
-			while (true) {
-				// Leer mensaje de consola
+			while (!salir && !socket.isClosed()) {
+				// Se va quedar esperando a que haya input, por lo que el hilo no va a morir hasta que se introduzca algo
 				String mensaje = sc.nextLine();
+				output.writeUTF(mensaje);
 
-				if (mensaje != null) {
-					// Enviar mensaje
-					output.writeUTF(mensaje);
-
-					// Salir del bucle
-					if (mensaje.equalsIgnoreCase("salir")) {
-						break;
-					}
+				if (mensaje.equalsIgnoreCase("salir")) {
+					salir = true;
+					System.out.println("> Se envió 'salir'.");
 				}
 			}
+
 		} catch (IOException e) {
-			System.out.println("-> Error en el output stream: " + e.getMessage());
-			e.printStackTrace();
+			//
 		} finally {
 			try {
 				if (sc != null)
 					sc.close();
 				if (output != null)
 					output.close();
+				if (socket != null) {
+					socket.close();
+				}
 			} catch (IOException e) {
-				//
+
 			}
 		}
 	}

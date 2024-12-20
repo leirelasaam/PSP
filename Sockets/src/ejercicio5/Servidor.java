@@ -21,27 +21,28 @@ public class Servidor {
 
 			// Aceptar la conexión del cliente
 			socket = serverSocket.accept();
+			System.out.println("> Cliente conectado.");
 
-			EnviarThread et = new EnviarThread(socket);
-			RecibirThread rt = new RecibirThread(socket);
+			EnviarThread et = new EnviarThread("EnviarServidor", socket);
+			RecibirThread rt = new RecibirThread("RecibirServidor", socket);
 			
 			et.start();
 			rt.start();
 			
+			// Como el server socket se cierra en esta clase, esperar para que no se cierre al instante
 			et.join();
 			rt.join();
+			
 		} catch (IOException e) {
 			System.out.println("> Error IO en el servidor: " + e.getMessage());
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("> Error de interrupción en el servidor: " + e.getMessage());
 		} finally {
 			try {
-				if (serverSocket != null)
+				if (serverSocket!= null)
 					serverSocket.close();
-				System.out.println("> Servidor cerrado.");
 			} catch (IOException e) {
-				//
+				
 			}
 		}
 	}
