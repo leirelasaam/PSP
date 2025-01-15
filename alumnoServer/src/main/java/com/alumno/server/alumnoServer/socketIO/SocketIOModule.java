@@ -34,6 +34,8 @@ public class SocketIOModule {
 		server.addEventListener(Events.ON_LOGIN.value, MessageInput.class, this.login());
 		server.addEventListener(Events.ON_GET_ALL.value, MessageInput.class, this.getAll());
 		server.addEventListener(Events.ON_LOGOUT.value, MessageInput.class, this.logout());
+		
+		server.addEventListener(Events.ON_TELEFONO_ENCONTRADO.value, null, null);
 	}
 
 	// Default events

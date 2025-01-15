@@ -22,6 +22,10 @@ public class Alumno {
 		this.edad = edad;
 	}
 	
+	public Alumno() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}

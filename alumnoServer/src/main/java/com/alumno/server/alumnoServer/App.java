@@ -1,5 +1,6 @@
 package com.alumno.server.alumnoServer;
 
+import com.alumno.server.alumnoServer.dataBase.entity.DDBBSimulada;
 import com.alumno.server.alumnoServer.socketIO.SocketIOModule;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOServer;
@@ -10,6 +11,8 @@ public class App {
 	private static final int PORT = 3000;
 	
 	public static void main(String[] args) {
+		
+		DDBBSimulada db = DDBBSimulada.getInstance();
 		
 		// Server configuration 
 		Configuration config = new Configuration ();
